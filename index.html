@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>West Cambridge Period Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: a blush-pink hero card, then soft rounded building cards on a petal-washed background */
+:root{
+  --bg:#fff4f8; --surface:#ffffff; --ink:#3d1630; --muted:#8a5b78; --line:#f6d3e3;
+  --accent:#d6337f; --accent-ink:#ffffff; --accent-soft:#ffe1ee; --petal:#ffc6de; --petal-2:#ffe7c9;
+  --hero-a:#ffd3e6; --hero-b:#ffeaf2;
+  --ok:#1d7a52; --ok-soft:#e1f5ea; --bad:#c0283f; --bad-soft:#ffe3e7; --unk:#8a6b80; --unk-soft:#f6ebf1;
+  --shadow:0 6px 20px -12px rgba(176,40,110,.35);
+  --display:"Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1f1019; --surface:#2b1724; --ink:#ffe8f2; --muted:#d3a3c0; --line:#4a2640;
+  --accent:#ff7db8; --accent-ink:#2a0d1d; --accent-soft:#4a1e37; --petal:#5a2346; --petal-2:#3d2230;
+  --hero-a:#4d1d3b; --hero-b:#2e1626;
+  --ok:#7ddcaa; --ok-soft:#173a2a; --bad:#ff8a9a; --bad-soft:#4a1b24; --unk:#cfa9c1; --unk-soft:#3a2333;
+  --shadow:0 6px 20px -12px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1f1019; --surface:#2b1724; --ink:#ffe8f2; --muted:#d3a3c0; --line:#4a2640;
+  --accent:#ff7db8; --accent-ink:#2a0d1d; --accent-soft:#4a1e37; --petal:#5a2346; --petal-2:#3d2230;
+  --hero-a:#4d1d3b; --hero-b:#2e1626;
+  --ok:#7ddcaa; --ok-soft:#173a2a; --bad:#ff8a9a; --bad-soft:#4a1b24; --unk:#cfa9c1; --unk-soft:#3a2333;
+  --shadow:0 6px 20px -12px rgba(0,0,0,.6); color-scheme:dark}
+body{background:var(--bg);background-image:radial-gradient(520px 360px at 100% 0%,var(--petal),transparent 70%),radial-gradient(420px 320px at 0% 40%,var(--petal-2),transparent 70%);background-repeat:no-repeat;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px;display:grid;gap:20px}
+header{position:relative;overflow:hidden;display:grid;gap:12px;padding:26px 22px 22px;border-radius:28px;background:linear-gradient(135deg,var(--hero-a),var(--hero-b));box-shadow:var(--shadow)}
+header::after{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--accent-soft),transparent 70%);opacity:.9;pointer-events:none}
+header > *{position:relative;z-index:1}
+.flower{position:absolute;right:18px;top:16px;width:64px;height:64px;z-index:1}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);padding-right:76px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,6.4vw,46px);line-height:1.04;margin:0;text-wrap:balance;padding-right:64px}
+.lede{margin:0;color:var(--muted);max-width:60ch}
+.notice{background:var(--surface);border-radius:16px;padding:12px 14px;font-size:14.5px;display:grid;gap:4px;border:1px dashed var(--petal)}
+.notice strong{color:var(--accent)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:11px 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+.tools input::placeholder{color:var(--muted)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filters button:hover{border-color:var(--accent)}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.summary{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+ol.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+li.b{padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);display:grid;gap:10px;scroll-margin-top:16px}
+li.b.target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+.row{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.name{min-width:0;flex:1 1 240px}
+.name h2{font-family:var(--display);font-weight:600;font-size:21px;line-height:1.2;margin:0}
+.dept{color:var(--muted);font-size:14.5px}
+.addr{font-size:13px;color:var(--muted)}
+.chip{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)} .chip.unk{background:var(--unk-soft);color:var(--unk)}
+.locs{display:grid;gap:8px}
+.loc{display:grid;gap:8px;padding:12px 14px;border-radius:16px;background:var(--accent-soft);scroll-margin-top:16px}
+.loc.target{box-shadow:0 0 0 2.5px var(--accent)}
+.loc .top{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.loc .label{font-weight:700;min-width:0;flex:1 1 180px;overflow-wrap:anywhere}
+.loc .actions button{background:var(--surface)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh}
+.datatools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.datatools > button{font:inherit;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;border:1.5px solid var(--accent);background:var(--surface);color:var(--accent);cursor:pointer}
+.datatools > button.quiet{border-color:transparent;background:transparent;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:inherit;font-size:13.5px;font-weight:700;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"].ok{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.seg button[aria-pressed="true"].bad{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.seg button[aria-pressed="true"].unk{background:var(--unk);border-color:var(--unk);color:var(--surface)}
+.seg button[aria-pressed="true"].na{background:var(--muted);border-color:var(--muted);color:var(--surface)}
+.seg button:hover{border-color:var(--accent)}
+.chip.na{background:var(--unk-soft);color:var(--muted)}
+.loc.na{opacity:.6}
+.note{width:100%;min-width:0;font:inherit;font-size:14px;padding:8px 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+.note::placeholder{color:var(--muted)}
+.empty-note{color:var(--muted);font-style:italic;font-size:14.5px}
+.actions button.quiet,form.spotform button.quiet{background:transparent;border-color:transparent;color:var(--muted)}
+.actions button.add{border-style:dashed;border-color:var(--accent);color:var(--accent)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;padding:8px 10px;border-radius:12px;background:var(--bad-soft);color:var(--ink)}
+.confirm span{flex:1 1 200px;min-width:0}
+.confirm button{font:inherit;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;border:0;cursor:pointer}
+.confirm button.danger{background:var(--bad);color:var(--surface)}
+.confirm button.quiet{background:transparent;color:var(--muted)}
+.meta{font-size:12.5px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{font:inherit;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .2s}
+.actions button:hover:not(:disabled){background:var(--accent-soft)}
+.actions button.empty{border-color:var(--bad);color:var(--bad)}
+.actions button.stock{border-color:var(--ok);color:var(--ok)}
+.actions button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+form.spotform{display:flex;gap:8px;flex-wrap:wrap}
+form.spotform input{flex:1 1 220px;min-width:0;font:inherit;font-size:14.5px;padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+form.spotform button{font:inherit;font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.toast{font-size:13.5px;font-weight:700;color:var(--ok)}
+footer{font-size:14px;color:var(--muted);display:grid;gap:8px;max-width:62ch;padding:4px 4px 0}
+footer h3{font-family:var(--display);font-weight:600;font-size:19px;color:var(--ink);margin:0}
+@media (max-width:420px){.flower{width:48px;height:48px;right:12px;top:12px} h1{padding-right:44px} .eyebrow{padding-right:56px}}
+@media (prefers-reduced-motion:no-preference){.flower{animation:sway 7s ease-in-out infinite;transform-origin:50% 50%} @keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <svg class="flower" viewBox="0 0 64 64" aria-hidden="true">
+      <g fill="var(--accent)" opacity=".85">
+        <ellipse cx="32" cy="14" rx="9" ry="13"/>
+        <ellipse cx="32" cy="14" rx="9" ry="13" transform="rotate(72 32 32)"/>
+        <ellipse cx="32" cy="14" rx="9" ry="13" transform="rotate(144 32 32)"/>
+        <ellipse cx="32" cy="14" rx="9" ry="13" transform="rotate(216 32 32)"/>
+        <ellipse cx="32" cy="14" rx="9" ry="13" transform="rotate(288 32 32)"/>
+      </g>
+      <circle cx="32" cy="32" r="8" fill="var(--surface)"/>
+    </svg>
+    <div class="eyebrow">University of Cambridge · West Cambridge site · CB3 0</div>
+    <h1>Free period products on the West Cambridge site</h1>
+    <p class="lede">Find which buildings provide free pads and tampons, and see whether they were last reported stocked or empty. Since 2021 the University has provided free products in every department and faculty building.</p>
+    <div class="notice" id="notice">
+      <span><strong>Survey in progress.</strong> Each building has a ground, first, second and third floor. Set each floor’s status as you check it, add which toilet in the note, and mark floors a building doesn’t have as “Doesn’t apply”.</span>
+    </div>
+    <div class="datatools">
+      <button type="button" id="export">Export CSV</button>
+      <button type="button" id="reset" class="quiet">Clear all statuses</button>
+      <span id="resetconfirm" class="confirm" hidden>
+        <span>Clear every status and note on this device?</span>
+        <button type="button" id="resetyes" class="danger">Clear all</button>
+        <button type="button" id="resetno" class="quiet">Keep</button>
+      </span>
+    </div>
+  </header>
+
+  <div class="tools">
+    <label for="q" hidden>Search buildings</label>
+    <input id="q" type="search" placeholder="Search building, department or road">
+    <div class="filters" role="group" aria-label="Filter by status">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="ok" aria-pressed="false">Stocked</button>
+      <button type="button" data-f="bad" aria-pressed="false">Reported empty</button>
+      <button type="button" data-f="unk" aria-pressed="false">Not checked</button>
+      <button type="button" data-f="hide" aria-pressed="false">Hide “Doesn’t apply”</button>
+    </div>
+  </div>
+  <div class="summary" id="summary"></div>
+
+  <ol class="list" id="list"></ol>
+
+  <footer>
+    <h3>How the status works</h3>
+    <p>Each floor shows the status you last set and when you set it. The building’s badge sums up its floors, leaving out any marked “Doesn’t apply”.</p>
+    <p>Statuses are saved in this browser on this device only. Use “Export CSV” to keep a copy or share your survey results.</p>
+    <p>Some buildings need a University card to get in. The Sports Centre is open to members of the public who use the gym.</p>
+  </footer>
+</div>
+
+<script>
+const BUILDINGS = [
+  {id:"cavendish", name:"Ray Dolby Centre (Cavendish Laboratory)", dept:"Physics", addr:"JJ Thomson Avenue"},
+  {id:"cavendish-older", name:"Cavendish Laboratory — Bragg, Mott & Rutherford buildings", dept:"Physics", addr:"JJ Thomson Avenue"},
+  {id:"gates", name:"William Gates Building", dept:"Computer Science and Technology", addr:"15 JJ Thomson Avenue"},
+  {id:"materials", name:"Department of Materials Science & Metallurgy", dept:"Materials Science", addr:"27 Charles Babbage Road"},
+  {id:"maxwell", name:"Maxwell Centre", dept:"Physics / industry partnerships", addr:"JJ Thomson Avenue"},
+  {id:"eed", name:"Electrical Engineering Division", dept:"Engineering", addr:"9 JJ Thomson Avenue"},
+  {id:"ifm", name:"Alan Reece Building (Institute for Manufacturing)", dept:"Engineering", addr:"17 Charles Babbage Road"},
+  {id:"whittle", name:"Whittle Laboratory", dept:"Engineering", addr:"1 JJ Thomson Avenue"},
+  {id:"civil", name:"Civil Engineering Building", dept:"Engineering", addr:"7a JJ Thomson Avenue"},
+  {id:"schofield", name:"Schofield Centre", dept:"Engineering — Geotechnics", addr:"High Cross, Madingley Road"},
+  {id:"nanoscience", name:"Nanoscience Centre", dept:"Interdisciplinary research", addr:"11 JJ Thomson Avenue"},
+  {id:"needham", name:"Roger Needham Building", dept:"University Information Services", addr:"7 JJ Thomson Avenue"},
+  {id:"hauser", name:"Hauser Forum", dept:"Cambridge Enterprise, Ideaspace", addr:"3 Charles Babbage Road"},
+  {id:"hub", name:"West Hub", dept:"Café, study spaces, nursery and events", addr:"Charles Babbage Road"},
+  {id:"vet", name:"Department of Veterinary Medicine", dept:"Veterinary Medicine", addr:"Madingley Road"},
+  {id:"sports", name:"University Sports Centre", dept:"Sport", addr:"Philippa Fawcett Drive"},
+];
+
+const FLOORS = [
+  {id:"g", name:"Ground floor"},
+  {id:"1", name:"First floor"},
+  {id:"2", name:"Second floor"},
+  {id:"3", name:"Third floor"},
+];
+const STATUSES = [
+  {s:"ok",  btn:"Stocked",       chip:"Stocked"},
+  {s:"bad", btn:"Empty",         chip:"Empty"},
+  {s:"unk", btn:"Not checked",   chip:"Not checked yet"},
+  {s:"na",  btn:"Doesn’t apply", chip:"Doesn’t apply"},
+];
+const CHIP = Object.fromEntries(STATUSES.map(x => [x.s, x.chip]));
+const KEY = "wc-period-floors-v1";
+
+const state = { data: load(), filter:"all", hideNa:false, q:"" };
+
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state.data)); } catch (e) {} }
+function get(bid, fid){ return state.data[bid + ":" + fid] || { s:"unk", at:null, note:"" }; }
+function put(bid, fid, patch){
+  const cur = get(bid, fid);
+  state.data[bid + ":" + fid] = { ...cur, ...patch };
+  save();
+}
+
+function ago(ms){
+  const m = Math.round((Date.now()-ms)/60000);
+  if (m < 1) return "just now";
+  if (m < 60) return m + " min ago";
+  const h = Math.round(m/60); if (h < 24) return h + " h ago";
+  const d = Math.round(h/24); return d + (d === 1 ? " day ago" : " days ago");
+}
+function el(tag, attrs = {}, ...kids){
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null && k !== false) e.append(k);
+  return e;
+}
+
+function summary(bid){
+  const ss = FLOORS.map(f => get(bid, f.id).s).filter(s => s !== "na");
+  if (!ss.length) return { s:"na", text:"No floors apply" };
+  const bad = ss.filter(s => s === "bad").length, ok = ss.filter(s => s === "ok").length;
+  if (bad) return { s:"bad", text: bad + (bad === 1 ? " floor empty" : " floors empty") };
+  if (ok === ss.length) return { s:"ok", text:"All stocked" };
+  if (ok) return { s:"unk", text: ok + " of " + ss.length + " stocked" };
+  return { s:"unk", text:"Not checked yet" };
+}
+
+function renderFloor(b, f){
+  const st = get(b.id, f.id);
+  const box = el("div", { class:"loc" + (st.s === "na" ? " na" : ""), id: b.id + "-" + f.id });
+  box.append(el("div", {class:"top"}, el("div", {class:"label"}, f.name)));
+  const seg = el("div", {class:"seg", role:"group", "aria-label": f.name + " status"});
+  for (const x of STATUSES) {
+    seg.append(el("button", { type:"button", class:x.s, "aria-pressed": String(st.s === x.s),
+      onclick: () => { put(b.id, f.id, { s:x.s, at: Date.now() }); render(); } }, x.btn));
+  }
+  box.append(seg);
+  if (st.s !== "na") {
+    const noteId = "note-" + b.id + "-" + f.id;
+    box.append(el("label", {for:noteId, hidden:""}, f.name + " note"));
+    const note = el("input", { id:noteId, class:"note", maxlength:"120", placeholder:"Which toilet? (optional)" });
+    note.value = st.note || "";
+    note.addEventListener("change", () => { put(b.id, f.id, { note: note.value.trim() }); });
+    box.append(note);
+  }
+  box.append(el("div", {class:"meta"}, st.at ? "Updated " + ago(st.at) : "Not updated yet"));
+  return box;
+}
+
+function render(){
+  const list = document.getElementById("list");
+  const focusId = document.activeElement && document.activeElement.id;
+  list.replaceChildren();
+  const q = state.q.toLowerCase();
+  let shown = 0; const c = {ok:0, bad:0, unk:0, na:0};
+  for (const b of BUILDINGS) {
+    const statuses = FLOORS.map(f => get(b.id, f.id).s);
+    statuses.forEach(s => c[s]++);
+    if (state.filter !== "all" && !statuses.includes(state.filter)) continue;
+    const notes = FLOORS.map(f => get(b.id, f.id).note || "").join(" ");
+    if (q && !(b.name + " " + b.dept + " " + b.addr + " " + notes).toLowerCase().includes(q)) continue;
+    shown++;
+    const sum = summary(b.id);
+    const li = el("li", {class:"b", id:b.id},
+      el("div", {class:"row"},
+        el("div", {class:"name"}, el("h2", {}, b.name), el("div", {class:"dept"}, b.dept), el("div", {class:"addr"}, b.addr)),
+        el("span", {class:"chip " + sum.s}, sum.text)));
+    const box = el("div", {class:"locs"});
+    for (const f of FLOORS) {
+      const st = get(b.id, f.id);
+      if (state.hideNa && st.s === "na") continue;
+      if (state.filter !== "all" && st.s !== state.filter) continue;
+      box.append(renderFloor(b, f));
+    }
+    li.append(box);
+    list.append(li);
+  }
+  if (!shown) list.append(el("li", {class:"b"}, el("div", {class:"dept"}, "No buildings match. Clear the search or pick another filter.")));
+  if (focusId) { const fEl = document.getElementById(focusId); if (fEl && list.contains(fEl)) fEl.focus(); }
+  document.getElementById("summary").textContent =
+    `${BUILDINGS.length} buildings · ${BUILDINGS.length * FLOORS.length} floors · ${c.ok} stocked · ${c.bad} empty · ${c.unk} not checked · ${c.na} don’t apply`;
+}
+
+function csvCell(v){ v = String(v ?? ""); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function exportCsv(){
+  const rows = [["Building","Department","Address","Floor","Status","Note","Last updated"]];
+  for (const b of BUILDINGS) for (const f of FLOORS) {
+    const st = get(b.id, f.id);
+    rows.push([b.name, b.dept, b.addr, f.name, CHIP[st.s], st.note || "", st.at ? new Date(st.at).toISOString() : ""]);
+  }
+  const csv = "﻿" + rows.map(r => r.map(csvCell).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+  const a = el("a", {href:url, download:"west-cambridge-period-products-" + new Date().toISOString().slice(0,10) + ".csv"});
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+document.getElementById("export").addEventListener("click", exportCsv);
+document.getElementById("reset").addEventListener("click", () => { document.getElementById("resetconfirm").hidden = false; });
+document.getElementById("resetno").addEventListener("click", () => { document.getElementById("resetconfirm").hidden = true; });
+document.getElementById("resetyes").addEventListener("click", () => {
+  state.data = {}; save(); document.getElementById("resetconfirm").hidden = true; render();
+});
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+document.querySelectorAll(".filters button").forEach(btn => btn.addEventListener("click", () => {
+  if (btn.dataset.f === "hide") {
+    state.hideNa = !state.hideNa; btn.setAttribute("aria-pressed", String(state.hideNa));
+  } else {
+    state.filter = btn.dataset.f;
+    document.querySelectorAll('.filters button:not([data-f="hide"])').forEach(x => x.setAttribute("aria-pressed", String(x === btn)));
+  }
+  render();
+}));
+render();
+if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView({block:"start"}); }
+</script>
+</body>
+</html>
